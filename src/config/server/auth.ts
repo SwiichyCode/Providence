@@ -6,6 +6,7 @@ import {
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import DiscordProvider from "next-auth/providers/discord";
+import BattleNetProvider from "next-auth/providers/battlenet";
 
 import { env } from "@/env";
 import { db } from "@/config/server/db";
@@ -55,6 +56,11 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
+    }),
+    BattleNetProvider({
+      clientId: env.BATTLENET_CLIENT_ID,
+      clientSecret: env.BATTLENET_CLIENT_SECRET,
+      issuer: "https://eu.battle.net/oauth",
     }),
     /**
      * ...add more providers here.

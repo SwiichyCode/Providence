@@ -21,8 +21,13 @@ export const LoginCard = ({ session }: Props) => {
           Enter your email below to login to your account
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <LoginButton session={session} />
+      <CardContent className={"space-y-4"}>
+        <LoginButton session={session} provider={"discord"}>
+          Login with Discord
+        </LoginButton>
+        <LoginButton session={session} provider={"battlenet"}>
+          Login with Battle.net
+        </LoginButton>
       </CardContent>
     </Card>
   );

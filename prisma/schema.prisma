@@ -66,6 +66,15 @@ model User {
   posts         Post[]
 }
 
+model Member {
+  id             String  @id @default(cuid())
+  pseudo         String
+  class          String
+  specialization String
+  role           String
+  appreciation   String?
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique

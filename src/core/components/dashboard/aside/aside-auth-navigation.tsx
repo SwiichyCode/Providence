@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -7,6 +6,7 @@ import {
 } from "@/core/components/ui/tooltip";
 import { Button } from "@/core/components/ui/button";
 import { LifeBuoy, SquareUser } from "lucide-react";
+import { AsideAuthLogout } from "@/core/components/dashboard/aside/aside-auth-logout";
 
 export const AsideAuthNavigation = () => {
   return (
@@ -42,6 +42,7 @@ export const AsideAuthNavigation = () => {
             Account
           </TooltipContent>
         </Tooltip>
+        <AsideAuthLogout />
       </TooltipProvider>
     </nav>
   );
