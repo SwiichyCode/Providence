@@ -70,7 +70,7 @@ model Member {
   id             String  @id @default(cuid())
   pseudo         String
   class          String
-  specialization String
+  specialization String?
   role           String
   appreciation   String?
 }

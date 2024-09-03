@@ -10,6 +10,7 @@ import { InputForm } from "@/core/components/ui/input-form";
 import { ButtonSubmit } from "@/core/components/ui/button-submit";
 import { TextAreaForm } from "@/core/components/ui/textarea-form";
 import { SelectForm } from "@/core/components/ui/select-form";
+import { addMemberAction } from "@/core/components/actions/add-member-action";
 
 export type FormValues = z.infer<typeof formSchema>;
 
@@ -68,32 +69,48 @@ const CLASS = [
   },
 ];
 
+const ROLE = ["Tank", "Healer", "DPS"];
+
 export const RosterForm = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [currentClass, setCurrentClass] = useState("");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {},
+    defaultValues: {
+      pseudo: "",
+      class: "",
+      specialization: "",
+      role: "",
+      appreciation: "",
+    },
   });
 
   const watchClass = form.watch("class");
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
-      console.log(values);
+      const payload = await addMemberAction(values);
+
+      if (payload?.serverError) {
+        setErrorMessage(payload.serverError);
+        return;
+      }
+
+      form.reset();
     });
   }
 
   useEffect(() => {
     setCurrentClass(form.watch("class"));
-    console.log("test");
   }, [form, watchClass]);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={"space-y-4"}>
         <InputForm control={form.control} name="pseudo" label="Pseudo" />
+
         <SelectForm
           control={form.control}
           name="class"
@@ -101,6 +118,7 @@ export const RosterForm = () => {
           items={CLASS.map((c) => c.value)}
           label="Class"
         />
+
         {currentClass && (
           <SelectForm
             control={form.control}
@@ -113,12 +131,23 @@ export const RosterForm = () => {
           />
         )}
 
+        <SelectForm
+          control={form.control}
+          name="role"
+          placeholder="Role..."
+          items={ROLE}
+          label="Role"
+        />
+
         <TextAreaForm
           control={form.control}
           name="appreciation"
           label="Appreciation"
         />
+
         <ButtonSubmit isPending={isPending}>Submit</ButtonSubmit>
+
+        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
       </form>
     </Form>
   );
