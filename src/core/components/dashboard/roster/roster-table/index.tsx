@@ -32,7 +32,7 @@ export const RosterDataTable = <TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-xl border shadow">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

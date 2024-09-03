@@ -7,6 +7,7 @@ import { RosterDataTable } from "@/core/components/dashboard/roster/roster-table
 
 import { db } from "@/config/server/db";
 import { columns } from "@/core/components/dashboard/roster/roster-table/columns";
+import { RosterInformations } from "@/core/components/dashboard/roster/roster-informations";
 
 export default async function HomePage() {
   const session = await getServerAuthSession();
@@ -25,6 +26,7 @@ export default async function HomePage() {
         </RosterCardForm>
 
         <RosterDataTable columns={columns} data={members} />
+        <RosterInformations members={members} />
       </main>
     </div>
   );
