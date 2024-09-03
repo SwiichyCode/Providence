@@ -14,7 +14,7 @@ export function classColor(className: string) {
     case "Druid":
       return "#FF7C0A";
     case "Evoker":
-      return "#FF7C0A";
+      return "#33937F";
     case "Hunter":
       return "#AAD372";
     case "Mage":
