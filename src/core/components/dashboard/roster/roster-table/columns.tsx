@@ -1,4 +1,7 @@
+"use client";
+
 import type { ColumnDef } from "@tanstack/react-table";
+import { classColor } from "@/config/utils";
 
 export type Member = {
   id: string;
@@ -16,6 +19,12 @@ export const columns: ColumnDef<Member>[] = [
   {
     accessorKey: "class",
     header: "Class",
+
+    cell: (props) => (
+      <span style={{ color: classColor(String(props.getValue())) }}>
+        {String(props.getValue())}
+      </span>
+    ),
   },
   {
     accessorKey: "specialization",
