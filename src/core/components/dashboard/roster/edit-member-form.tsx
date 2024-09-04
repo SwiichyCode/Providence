@@ -20,6 +20,8 @@ import { InputForm } from "@/core/components/ui/input-form";
 import { SelectForm } from "@/core/components/ui/select-form";
 import { TextAreaForm } from "@/core/components/ui/textarea-form";
 import { ButtonSubmit } from "@/core/components/ui/button-submit";
+import { Button } from "@/core/components/ui/button";
+import { removeMemberAction } from "@/core/actions/remove-member-action";
 
 type Props = {
   member: Member;
@@ -43,6 +45,17 @@ export const EditMemberForm = ({ member }: Props) => {
   function onSubmit(values: FormValues) {
     startTransition(async () => {
       const payload = await editMemberAction({ id: member.id, ...values });
+
+      if (payload?.serverError) {
+        setErrorMessage(payload.serverError);
+        return;
+      }
+    });
+  }
+
+  function handleRemove() {
+    startTransition(async () => {
+      const payload = await removeMemberAction({ id: member.id });
 
       if (payload?.serverError) {
         setErrorMessage(payload.serverError);
@@ -95,7 +108,12 @@ export const EditMemberForm = ({ member }: Props) => {
               label="Appreciation"
             />
 
-            <ButtonSubmit isPending={isPending}>Update</ButtonSubmit>
+            <div className={"flex gap-4"}>
+              <ButtonSubmit isPending={isPending}>Update</ButtonSubmit>
+              <Button type="button" onClick={handleRemove}>
+                Remove
+              </Button>
+            </div>
 
             {errorMessage && <div className="text-red-500">{errorMessage}</div>}
           </form>
