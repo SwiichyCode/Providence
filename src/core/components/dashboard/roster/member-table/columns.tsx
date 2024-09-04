@@ -2,6 +2,7 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { classColor } from "@/config/utils";
+import Link from "next/link";
 
 export type Member = {
   id: string;
@@ -33,5 +34,12 @@ export const columns: ColumnDef<Member>[] = [
   {
     accessorKey: "role",
     header: "Role",
+  },
+  {
+    accessorKey: "view",
+    header: "View",
+    cell: (props) => (
+      <Link href={`/dashboard/${String(props.row.original.id)}`}>View</Link>
+    ),
   },
 ];

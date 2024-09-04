@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
 
     async redirect({ url, baseUrl }) {
       if (url.startsWith("/")) return baseUrl + url;
-      return baseUrl;
+      return baseUrl + "/dashboard";
     },
   },
   adapter: PrismaAdapter(db) as Adapter,

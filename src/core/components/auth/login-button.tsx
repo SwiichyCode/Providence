@@ -13,9 +13,13 @@ type Props = {
 export const LoginButton = ({ session, provider, children }: Props) => {
   if (session) return null;
 
+  const handleSignIn = async () => {
+    await signIn(provider, { callbackUrl: "/dashboard" });
+  };
+
   return (
     <Button
-      onClick={() => signIn(provider)}
+      onClick={async () => await handleSignIn()}
       variant={"outline"}
       className={"w-full"}
     >

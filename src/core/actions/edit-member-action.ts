@@ -6,20 +6,23 @@ import { db } from "@/config/server/db";
 import * as z from "zod";
 
 const schema = z.object({
-  pseudo: z.string().min(1),
-  class: z.string().min(1),
+  id: z.string(),
+  pseudo: z.string(),
+  class: z.string(),
   specialization: z.string().optional(),
-  role: z.string().min(1),
+  role: z.string(),
   appreciation: z.string().optional(),
 });
 
-export const addMemberAction = adminAction
+export const editMemberAction = adminAction
   .schema(schema)
   .action(async ({ parsedInput }) => {
     try {
-      await db.member.create({
+      await db.member.update({
+        where: {
+          id: parsedInput.id,
+        },
         data: {
-          pseudo: parsedInput.pseudo,
           class: parsedInput.class,
           specialization: parsedInput.specialization,
           role: parsedInput.role,
@@ -30,5 +33,5 @@ export const addMemberAction = adminAction
       throw new ServerActionError("Error while adding member");
     }
 
-    revalidatePath("/");
+    revalidatePath(`/dashboard/${parsedInput.id}`);
   });

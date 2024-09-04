@@ -12,7 +12,7 @@ type Props = {
   members: Member[];
 };
 
-export const RosterInformations = ({ members }: Props) => {
+export const MemberInformations = ({ members }: Props) => {
   const tank = members.filter((member) => member.role === "Tank");
   const healer = members.filter((member) => member.role === "Healer");
   const dps = members.filter((member) => member.role === "DPS");
