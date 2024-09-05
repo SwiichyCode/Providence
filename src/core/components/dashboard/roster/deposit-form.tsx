@@ -12,16 +12,16 @@ export type FormValues = z.infer<typeof formSchema>;
 
 type Props = {
   id: string;
-  deposit: boolean;
+  deposit: boolean | null;
 };
 
-const DepositForm = ({ deposit, id }: Props) => {
+export const DepositForm = ({ deposit, id }: Props) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      deposit: deposit,
+      deposit: deposit ?? false,
     },
   });
 
@@ -37,12 +37,12 @@ const DepositForm = ({ deposit, id }: Props) => {
   useEffect(() => {
     const subscription = form.watch((value, { name }) => {
       if (name === "deposit") {
-        form.handleSubmit(onSubmit)();
+        void form.handleSubmit(onSubmit)();
       }
 
       return subscription.unsubscribe();
     });
-  }, [form]);
+  }, [onSubmit, form]);
 
   return (
     <Form {...form}>
@@ -55,5 +55,3 @@ const DepositForm = ({ deposit, id }: Props) => {
     </Form>
   );
 };
-
-export default DepositForm;

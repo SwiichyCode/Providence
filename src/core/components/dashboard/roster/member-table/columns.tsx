@@ -3,7 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { classColor } from "@/config/utils";
 import Link from "next/link";
-import DepositForm from "@/core/components/dashboard/roster/deposit-form";
+import { DepositForm } from "@/core/components/dashboard/roster/deposit-form";
 
 export type Member = {
   id: string;
@@ -11,7 +11,7 @@ export type Member = {
   class: string;
   specialization: string | null;
   role: string;
-  deposit: boolean;
+  deposit: boolean | null;
 };
 
 export const columns: ColumnDef<Member>[] = [
