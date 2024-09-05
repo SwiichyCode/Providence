@@ -67,31 +67,32 @@ model User {
 }
 
 model Member {
-  id             String  @id @default(cuid())
+  id             String   @id @default(cuid())
   pseudo         String
   class          String
   specialization String?
   role           String
   appreciation   String?
+  deposit        Boolean?
 }
 
 model Recruitment {
-  id          String   @id @default(cuid())
-  pseudo      String
-  battleTag   String
-  discord     String
-  class       String
+  id             String  @id @default(cuid())
+  pseudo         String
+  battleTag      String
+  discord        String
+  class          String
   specialization String
-  faction     String
-  raiderIo    String?
-  warcraftLogs String?
-  presentation String
-  motivation  String
+  faction        String
+  raiderIo       String?
+  warcraftLogs   String?
+  presentation   String
+  motivation     String
 }
 
 model NeededClass {
-  id          String @id @default(cuid())
-  class       String[]
+  id    String   @id @default(cuid())
+  class String[]
 }
 
 model VerificationToken {

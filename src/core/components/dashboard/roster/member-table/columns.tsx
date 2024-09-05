@@ -3,6 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { classColor } from "@/config/utils";
 import Link from "next/link";
+import DepositForm from "@/core/components/dashboard/roster/deposit-form";
 
 export type Member = {
   id: string;
@@ -10,6 +11,7 @@ export type Member = {
   class: string;
   specialization: string | null;
   role: string;
+  deposit: boolean;
 };
 
 export const columns: ColumnDef<Member>[] = [
@@ -40,6 +42,16 @@ export const columns: ColumnDef<Member>[] = [
     header: "View",
     cell: (props) => (
       <Link href={`/dashboard/${String(props.row.original.id)}`}>View</Link>
+    ),
+  },
+  {
+    accessorKey: "deposit",
+    header: "Deposit",
+    cell: (props) => (
+      <DepositForm
+        id={props.row.original.id}
+        deposit={props.row.original.deposit}
+      />
     ),
   },
 ];
