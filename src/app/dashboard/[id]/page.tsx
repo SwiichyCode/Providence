@@ -1,5 +1,4 @@
 import { db } from "@/config/server/db";
-import { Fragment } from "react";
 import { EditMemberForm } from "@/core/components/dashboard/roster/edit-member-form";
 
 type Props = {
@@ -20,8 +19,8 @@ export default async function MemberPage({ params }: Props) {
   }
 
   return (
-    <Fragment>
+    <div className="grid flex-1 gap-4 overflow-auto p-12 md:grid-cols-2 lg:grid-cols-3">
       <EditMemberForm member={member} />
-    </Fragment>
+    </div>
   );
 }

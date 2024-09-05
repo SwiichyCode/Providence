@@ -6,7 +6,7 @@ import {
   TooltipTrigger,
 } from "@/core/components/ui/tooltip";
 import { Button } from "@/core/components/ui/button";
-import { Book, SquareTerminal } from "lucide-react";
+import { Book, SquareTerminal, Settings } from "lucide-react";
 import { URL } from "@/config/constants/url";
 
 const globalNavigationItems = [
@@ -19,6 +19,16 @@ const globalNavigationItems = [
     label: "Recruiters",
     icon: <Book className="size-5" />,
     href: URL.RECRUITERS,
+  },
+  {
+    label: "Settings",
+    icon: <Settings className="size-5" />,
+    href: URL.SETTINGS,
+  },
+  {
+    label: "Recruitment",
+    icon: <Book className="size-5" />,
+    href: URL.RECRUITMENT,
   },
 ];
 

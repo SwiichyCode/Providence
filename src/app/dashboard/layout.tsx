@@ -17,9 +17,7 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
 
       <main className="p-12">
         <DashboardBreadcrumb />
-        <div className="grid flex-1 gap-4 overflow-auto p-12 md:grid-cols-2 lg:grid-cols-3">
-          {children}
-        </div>
+        {children}
       </main>
     </div>
   );

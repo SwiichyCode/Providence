@@ -19,10 +19,15 @@ import { CLASS } from "@/config/data";
 import { TextAreaForm } from "@/core/components/ui/textarea-form";
 import { ButtonSubmit } from "@/core/components/ui/button-submit";
 import { postRecruitmentAction } from "@/core/actions/post-recruitment-action";
+import type { NeededClass } from "@prisma/client";
 
 export type FormValues = z.infer<typeof formSchema>;
 
-export const RecruitmentForm = () => {
+type Props = {
+  neededClass: NeededClass | null;
+};
+
+export const RecruitmentForm = ({ neededClass }: Props) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -102,7 +107,11 @@ export const RecruitmentForm = () => {
                 control={form.control}
                 name="class"
                 placeholder="Class..."
-                items={CLASS.map((c) => c.value)}
+                items={
+                  neededClass?.class.length
+                    ? neededClass?.class
+                    : CLASS.map((c) => c.value)
+                }
                 label="Class"
               />
 

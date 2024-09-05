@@ -89,6 +89,11 @@ model Recruitment {
   motivation  String
 }
 
+model NeededClass {
+  id          String @id @default(cuid())
+  class       String[]
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique
