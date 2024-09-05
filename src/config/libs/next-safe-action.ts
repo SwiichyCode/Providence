@@ -6,6 +6,16 @@ import { getServerAuthSession } from "@/config/server/auth";
 
 export class ServerActionError extends Error {}
 
+export const actionClient = createSafeActionClient({
+  handleReturnedServerError: (error) => {
+    if (error instanceof ServerActionError) {
+      return error.message;
+    }
+
+    return DEFAULT_SERVER_ERROR_MESSAGE;
+  },
+});
+
 export const adminAction = createSafeActionClient({
   handleReturnedServerError: (error) => {
     if (error instanceof ServerActionError) {

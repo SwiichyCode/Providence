@@ -75,6 +75,20 @@ model Member {
   appreciation   String?
 }
 
+model Recruitment {
+  id          String   @id @default(cuid())
+  pseudo      String
+  battleTag   String
+  discord     String
+  class       String
+  specialization String
+  faction     String
+  raiderIo    String?
+  warcraftLogs String?
+  presentation String
+  motivation  String
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique
