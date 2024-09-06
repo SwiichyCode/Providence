@@ -4,6 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { classColor } from "@/config/utils";
 import Link from "next/link";
 import { DepositForm } from "@/core/components/dashboard/roster/deposit-form";
+import { RosterForm } from "@/core/components/dashboard/roster/roster-form";
 
 export type Member = {
   id: string;
@@ -12,6 +13,7 @@ export type Member = {
   specialization: string | null;
   role: string;
   deposit: boolean | null;
+  roster: boolean | null;
 };
 
 export const columns: ColumnDef<Member>[] = [
@@ -51,6 +53,16 @@ export const columns: ColumnDef<Member>[] = [
       <DepositForm
         id={props.row.original.id}
         deposit={props.row.original.deposit}
+      />
+    ),
+  },
+  {
+    accessorKey: "roster",
+    header: "Roster",
+    cell: (props) => (
+      <RosterForm
+        id={props.row.original.id}
+        roster={props.row.original.roster}
       />
     ),
   },
