@@ -12,6 +12,8 @@ const schema = z.object({
   specialization: z.string().optional(),
   role: z.string(),
   appreciation: z.string().optional(),
+  deposit: z.boolean().default(false).optional(),
+  roster: z.boolean().default(false).optional(),
 });
 
 export const editMemberAction = adminAction
@@ -23,10 +25,13 @@ export const editMemberAction = adminAction
           id: parsedInput.id,
         },
         data: {
+          pseudo: parsedInput.pseudo,
           class: parsedInput.class,
           specialization: parsedInput.specialization,
           role: parsedInput.role,
           appreciation: parsedInput.appreciation,
+          deposit: parsedInput.deposit,
+          roster: parsedInput.roster,
         },
       });
     } catch (error) {
