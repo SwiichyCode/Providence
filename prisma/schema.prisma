@@ -68,14 +68,15 @@ model User {
 }
 
 model Member {
-  id             String   @id @default(cuid())
-  pseudo         String
-  class          String
-  specialization String?
-  role           String
-  appreciation   String?
-  deposit        Boolean?
-  roster         Boolean?
+  id               String   @id @default(cuid())
+  pseudo           String
+  class            String
+  specialization   String?
+  role             String
+  appreciation     String?
+  deposit          Boolean?
+  roster           Boolean?
+  rosterSubscribed Boolean?
 }
 
 model Recruitment {

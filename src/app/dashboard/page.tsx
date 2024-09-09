@@ -8,10 +8,10 @@ export default async function DashboardPage() {
   const members = await db.member.findMany();
 
   return (
-    <div className="grid flex-1 gap-4 overflow-auto p-12 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid flex-1 gap-4 overflow-auto p-12 md:grid-cols-2 lg:grid-cols-2">
       <AddMemberForm />
       <RosterDataTable columns={columns} data={members} />
-      <MemberInformations members={members} />
+      {/* <MemberInformations members={members} />*/}
     </div>
   );
 }

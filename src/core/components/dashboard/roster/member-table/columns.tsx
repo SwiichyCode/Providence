@@ -5,6 +5,7 @@ import { classColor } from "@/config/utils";
 import Link from "next/link";
 import { DepositForm } from "@/core/components/dashboard/roster/deposit-form";
 import { RosterForm } from "@/core/components/dashboard/roster/roster-form";
+import { RaidSubscriptionForm } from "@/core/components/dashboard/roster/raid-subscription-form";
 
 export type Member = {
   id: string;
@@ -14,6 +15,7 @@ export type Member = {
   role: string;
   deposit: boolean | null;
   roster: boolean | null;
+  rosterSubscribed: boolean | null;
 };
 
 export const columns: ColumnDef<Member>[] = [
@@ -63,6 +65,16 @@ export const columns: ColumnDef<Member>[] = [
       <RosterForm
         id={props.row.original.id}
         roster={props.row.original.roster}
+      />
+    ),
+  },
+  {
+    accessorKey: "rosterSubscribed",
+    header: "Subscribed",
+    cell: (props) => (
+      <RaidSubscriptionForm
+        id={props.row.original.id}
+        rosterSubscribed={props.row.original.rosterSubscribed}
       />
     ),
   },
