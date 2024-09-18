@@ -39,6 +39,7 @@ export const RecruitmentForm = ({ neededClass }: Props) => {
       pseudo: "",
       battleTag: "",
       class: "",
+      ilvl: "",
       specialization: "",
       faction: "",
       raiderIo: "",
@@ -127,8 +128,15 @@ export const RecruitmentForm = ({ neededClass }: Props) => {
                   label="Specialization"
                 />
               )}
+
+              <InputForm
+                control={form.control}
+                name="ilvl"
+                label="Ilvl"
+                type="number"
+              />
             </div>
-            <div className={"flex w-full space-x-4"}>
+            <div className="flex w-full space-x-4">
               <InputForm
                 control={form.control}
                 name="raiderIo"

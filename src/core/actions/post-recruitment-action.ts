@@ -12,6 +12,10 @@ const schema = z.object({
   battleTag: z.string().min(1),
   discord: z.string().min(1),
   class: z.string().min(1),
+  ilvl: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+    message: "Expected number, received a string",
+  }),
+
   specialization: z.string().min(1),
   faction: z.string().min(1),
   raiderIo: z.string().url().or(z.literal("")),
@@ -30,6 +34,7 @@ export const postRecruitmentAction = actionClient
           battleTag: parsedInput.battleTag,
           discord: parsedInput.discord,
           class: parsedInput.class,
+          ilvl: parsedInput.ilvl,
           specialization: parsedInput.specialization,
           faction: parsedInput.faction,
           raiderIo: parsedInput.raiderIo,

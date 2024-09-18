@@ -85,6 +85,7 @@ model Recruitment {
   battleTag      String
   discord        String
   class          String
+  ilvl           String
   specialization String
   faction        String
   raiderIo       String?
