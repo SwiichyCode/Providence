@@ -1,5 +1,6 @@
 import { db } from "@/config/server/db";
 import { EditMemberForm } from "@/core/components/dashboard/roster/edit-member-form";
+import Link from "next/link";
 
 type Props = {
   params: {
