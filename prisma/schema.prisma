@@ -94,6 +94,15 @@ model Recruitment {
   motivation     String
 }
 
+model RosterMember {
+  id    Int    @id
+  name  String
+  realm String
+  class String
+  spec  String
+  ilvl  String
+}
+
 model NeededClass {
   id    String   @id @default(cuid())
   class String[]

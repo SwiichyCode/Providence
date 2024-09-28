@@ -6,8 +6,6 @@ type Props = {
   };
 };
 
-/*const recruitment: {     id: string     pseudo: string     battleTag: string     discord: string     class: string     ilvl: string     specialization: string     faction: string     raiderIo: string | null     warcraftLogs: string | null     presentation: string     motivation: string } | null Show less*/
-
 export default async function RecruitmentPage({ params }: Props) {
   const recruitment = await db.recruitment.findUnique({
     where: {
