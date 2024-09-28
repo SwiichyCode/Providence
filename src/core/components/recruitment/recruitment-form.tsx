@@ -20,6 +20,8 @@ import { TextAreaForm } from "@/core/components/ui/textarea-form";
 import { ButtonSubmit } from "@/core/components/ui/button-submit";
 import { postRecruitmentAction } from "@/core/actions/post-recruitment-action";
 import type { NeededClass } from "@prisma/client";
+import Link from "next/link";
+import { Button } from "@/core/components/ui/button";
 
 export type FormValues = z.infer<typeof formSchema>;
 
@@ -73,9 +75,17 @@ export const RecruitmentForm = ({ neededClass }: Props) => {
     <Card>
       <CardHeader>
         <CardTitle>Formulaire de recrutement</CardTitle>
-        <CardDescription>
-          Vous souhaitez rejoindre nos rangs ? Remplissez le formulaire
-          ci-dessous et nous vous contacterons dans les plus brefs délais.
+        <CardDescription className={"flex items-center"}>
+          <p>
+            Vous souhaitez rejoindre nos rangs ? Remplissez le formulaire et
+            contactez nous directement dans le salon Bienvenue de notre Discord.
+          </p>
+
+          <Button variant={"link"} className={"font-semibold"}>
+            <Link href={"https://discord.gg/RG738gWp."}>
+              Discord Providence
+            </Link>
+          </Button>
         </CardDescription>
       </CardHeader>
       <CardContent>

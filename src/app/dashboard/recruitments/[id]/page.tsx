@@ -1,4 +1,5 @@
 import { db } from "@/config/server/db";
+import { DeleteRecruitmentForm } from "@/core/components/dashboard/recruitments/delete-recruitment-form";
 
 type Props = {
   params: {
@@ -19,6 +20,7 @@ export default async function RecruitmentPage({ params }: Props) {
 
   return (
     <div>
+      <DeleteRecruitmentForm recruitmentId={recruitment.id} />
       <ul>
         <li>{recruitment.pseudo}</li>
         <li>{recruitment.battleTag}</li>
